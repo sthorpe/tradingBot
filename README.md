@@ -1,3 +1,5 @@
+![alt text](https://2.bp.blogspot.com/-ztv8BcdPQpI/WEqOPjy_CmI/AAAAAAAEup8/e35JaOBGUwst6W50I1MC5UIzkH0qT2hHwCLcB/s1600/AW328916_02.gif)
+
 # tradingBot
 
 ### Setup
