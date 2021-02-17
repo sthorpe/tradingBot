@@ -12,35 +12,36 @@ from datetime import datetime
 from pandas import DataFrame as df
 
 #datetime is UTC-5 when binance datetime is UTC
-
+# Gathering data in kandle lines
 def binance_klines():
     candles = client.klines('BTCUSDT', "15m", limit = 1000)
-    
+
     candles_dataframe = df(candles)
-    
+
     candles_dataframe_date = candles_dataframe['openTime']
-    
+
     final_date = []
-    
+
     for time in candles_dataframe_date.unique():
         readable = datetime.fromtimestamp(int(time/1000))
         final_date.append(readable)
-        
-        
+
+
     dataframe_finaldate = df(final_date)
-    
+
     dataframe_finaldate.columns = ['date']
-    
+
     final_dataframe = candles_dataframe.join(dataframe_finaldate)
-    
+
     final_dataframe.set_index('date', inplace=True)
-    
+
     return final_dataframe
 
 print(binance_klines())
 
 #https://www.tradingview.com/support/solutions/43000502338-relative-strength-index-rsi/
 
+# Awesome Osilator Indicator
 def AO_indi(klines):
     daily = klines
     daily['open'] = daily['open'].astype(float)
@@ -48,7 +49,7 @@ def AO_indi(klines):
     daily['low'] = daily['low'].astype(float)
     daily['close'] = daily['close'].astype(float)
     daily['volume'] = daily['volume'].astype(float)
-        
+
     daily['highpluslow'] = daily['high'] + daily['low']
     daily['midpoint'] = daily['highpluslow']/2
     daily['34_MA'] = daily.midpoint.rolling(window=34).mean()
@@ -62,10 +63,10 @@ def AO_indi(klines):
     return daily
 
 #test = AO_indi(binance_klines())
-#test.to_csv('test50.csv')   
+#test.to_csv('test50.csv')
 
- 
-    
+
+# Awesome Osilator prints above or below the zero line
 def AO_Cross(daily):
     daily['AO_sign'] = np.sign( np.sign(daily['AO']).diff().fillna(0) )
     daily['signal1'] = daily['AO_sign'] != 0
@@ -80,12 +81,12 @@ plt.style.use('fivethirtyeight')
 
 data = AO_indi(binance_klines())
 
-
+# Trying to mark out when a signal was happening
 def buy_sell(data):
     AoPivotLow = []
     AoPivotHigh = []
     flag = -1
-    
+
     for i in range(len(data)):
         if data['Slope_sign'][i] == 1:
             if flag != 1:
@@ -107,7 +108,7 @@ def buy_sell(data):
             AoPivotLow.append(np.nan)
             AoPivotHigh.append(np.nan)
     return (AoPivotLow, AoPivotHigh)
-                
+
 buy_sell = buy_sell(data)
 data['Buy_Signal_Price'] = buy_sell[0]
 data['Sell_Signal_Price'] = buy_sell[1]
@@ -128,7 +129,7 @@ plt.show()
 
 
 
-data['buys_and_sells'] = pd.concat([data['Buy_Signal_Price'].dropna(), data['Sell_Signal_Price'].dropna()]).reindex_like(data)   
+data['buys_and_sells'] = pd.concat([data['Buy_Signal_Price'].dropna(), data['Sell_Signal_Price'].dropna()]).reindex_like(data)
 data['percent_change'] = (data.buys_and_sells.pct_change())
 data['ammount']=(data['percent_change']+1).cumprod()*100
 
