@@ -5,9 +5,9 @@ from DataStreams.Coinbase import Coinbase
 
 # This will be where we combine all our functions and run them
 def main():
-    COINBASE_PRO_KEY = '502ce326637d160c0bf98072d9955ca8'
-    COINBASE_PRO_SECRET = '2seolrrwKZuGEwfhAFZELtmlbBKb4+IxkaP1EA5T2UT25NZMhzfYTCs0MBEru7hKALXCar053eMmvcsjUTnYiw=='
-    COINBASE_PRO_PASSPHRASE = 'wca3m8ajt6p'
+    COINBASE_PRO_KEY = 'c606224329f6a3a18d25a22436cea960'
+    COINBASE_PRO_SECRET = 'p6Ne820xWPrGekpAd1cdtyF6MTmgT1V55DIotyCWENuSQj6IqseFdfBjyRoFdQ9FqrNgbSovaF3fw2SsoSjgzQ=='
+    COINBASE_PRO_PASSPHRASE = 'lb3t6qfupvo'
     # api_url = 'https://api.pro.coinbase.com/'
     api_url = 'https://api-public.sandbox.pro.coinbase.com'
     auth = Coinbase(COINBASE_PRO_KEY, COINBASE_PRO_SECRET, COINBASE_PRO_PASSPHRASE)

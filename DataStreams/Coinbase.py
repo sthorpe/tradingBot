@@ -12,5 +12,5 @@ class Coinbase():
         self.passphrase = passphrase
 
     def client(self):
-        auth_client = cbpro.AuthenticatedClient(self.api_key, self.secret_key, self.passphrase)
+        auth_client = cbpro.AuthenticatedClient(self.api_key, self.secret_key, self.passphrase, api_url="https://api-public.sandbox.pro.coinbase.com")
         return auth_client
