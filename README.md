@@ -3,8 +3,8 @@
 # tradingBot
 
 ### Setup
-- Create account at https://pro.coinbase.com/
-- Play around and then go to your profile to create a API key. Currently using mine with just view access.
+- Create account at https://public.sandbox.pro.coinbase.com/
+- Play around and then go to your profile to create a API key. Currently using my sandbox.
 - Make sure you have python3 installed
 
 ### Run program
