@@ -13,7 +13,10 @@ os.environ['COINBASE_PRO_PASSPHRASE'] = 'lb3t6qfupvo'
 def main():
     coinbaseAPI = Coinbase(os.environ['COINBASE_PRO_KEY'], os.environ['COINBASE_PRO_SECRET'], os.environ['COINBASE_PRO_PASSPHRASE'])
     pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(coinbaseAPI.get_accounts())
+    pp.pprint(coinbaseAPI.get_products())
+
+    # Looking to see different ways to play with this Data
+
 
 if __name__ == "__main__":
     main()
