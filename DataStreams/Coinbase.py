@@ -87,8 +87,9 @@ class Coinbase():
         return self.client().withdraw(withdrawParams)
 
     def websocket_client(self):
-        wsClient = cbpro.WebsocketClient(url="wss://ws-feed.pro.coinbase.com", products=["BTC-USD", "ETH-USD"], channels=["ticker"])
-        wsClient.close()
+        wsClient = cbpro.WebsocketClient(url="wss://ws-feed-public.sandbox.pro.coinbase.com", products="BTC-USD", channels=["ticker"])
+        wsClient.start()
+        #wsClient.close()
 
     def realtime_order_book(self):
         order_book = cbpro.OrderBook(product_id='BTC-USD')

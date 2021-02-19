@@ -13,7 +13,7 @@ os.environ['COINBASE_PRO_PASSPHRASE'] = 'lb3t6qfupvo'
 def main():
     coinbaseAPI = Coinbase(os.environ['COINBASE_PRO_KEY'], os.environ['COINBASE_PRO_SECRET'], os.environ['COINBASE_PRO_PASSPHRASE'])
     pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(coinbaseAPI.get_products())
+    pp.pprint(coinbaseAPI.websocket_client())
 
     # Looking to see different ways to play with this Data
 
