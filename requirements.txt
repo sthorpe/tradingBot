@@ -2,4 +2,3 @@ cbpro
 requests
 pandas
 click
-colors
