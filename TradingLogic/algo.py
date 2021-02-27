@@ -162,5 +162,5 @@ while True:
     print("Dollars: ", possibleIncome)
 
     # Wait for 5 minutes before repeating
-    time.sleep(50)
+    time.sleep(300)
     iteration += 1
