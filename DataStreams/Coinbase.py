@@ -28,7 +28,7 @@ class Coinbase():
         return self.client().get_accounts()
 
     def get_account(self, account_number):
-        return self.client().get_account(account_number=account_number)
+        return self.client().get_account(account_number)
 
     def buy(self):
         # Buy 0.01 BTC @ 100 USD
@@ -96,3 +96,6 @@ class Coinbase():
         order_book.start()
         time.sleep(10)
         order_book.close()
+
+    def get_product_historic_rates(self):
+        return self.public_client().get_product_historic_rates('BTC-USD', granularity=900)
